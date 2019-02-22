@@ -13,3 +13,5 @@ Mise en place  de la configuration du commutateur de la succursale.
 - Luca B.
 - Henoc S.
 - Goncalo D. S.
+
+![CDC](./E-P_Infra-ALL01-CDC1_ConfigCommutateur.pdf)
