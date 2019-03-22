@@ -1,0 +1,140 @@
+Current configuration : 3119 bytes
+!
+! Last configuration change at 16:19:38 UTC Fri Mar 8 2019
+! NVRAM config last updated at 14:19:35 UTC Fri Mar 8 2019
+!
+version 15.2
+no service pad
+service timestamps debug datetime msec
+service timestamps log datetime msec
+no service password-encryption
+!
+hostname SW3
+!
+boot-start-marker
+boot-end-marker
+!
+!
+no aaa new-model
+system mtu routing 1500
+!
+!
+!
+!
+!
+!
+!
+!
+!
+crypto pki trustpoint TP-self-signed-2909342464
+ enrollment selfsigned
+ subject-name cn=IOS-Self-Signed-Certificate-2909342464
+ revocation-check none
+ rsakeypair TP-self-signed-2909342464
+!
+!
+crypto pki certificate chain TP-self-signed-2909342464
+ certificate self-signed 01
+  3082022B 30820194 A0030201 02020101 300D0609 2A864886 F70D0101 05050030
+  31312F30 2D060355 04031326 494F532D 53656C66 2D536967 6E65642D 43657274
+  69666963 6174652D 32393039 33343234 3634301E 170D3139 30333038 31343139
+  33355A17 0D323030 31303130 30303030 305A3031 312F302D 06035504 03132649
+  4F532D53 656C662D 5369676E 65642D43 65727469 66696361 74652D32 39303933
+  34323436 3430819F 300D0609 2A864886 F70D0101 01050003 818D0030 81890281
+  8100CE0F 5165A8C3 9C80C49F EF88691D 2FAC3B48 96663453 07B2FF72 FBE004AE
+  2DBA4A45 E63A25CC 1AD43485 8CA09196 E64F3294 C5CDE6B4 E8F3DCB1 9CBE4AE9
+  94A717FE 1B90202F C2C6E6BA AAED51C8 63C17928 31627604 33F954C8 B339D088
+  A9413E78 84EF673C 6BEE8A69 E5936B6A 6C221DF3 03AB5FDB AEB05FA9 7A2305A7
+  F2BF0203 010001A3 53305130 0F060355 1D130101 FF040530 030101FF 301F0603
+  551D2304 18301680 14926086 9BF35079 986D7F22 E712ECAC 9FAA27C0 40301D06
+  03551D0E 04160414 9260869B F3507998 6D7F22E7 12ECAC9F AA27C040 300D0609
+  2A864886 F70D0101 05050003 8181004B 1FF0C382 08957159 25115A36 B6DA3121
+  D82DD804 A532F98E 96878DAD BBD2B946 96621F3F 1FF57C12 0B583864 6E5552FC
+  5F915E39 9C18F21B 511A8AA2 B0CFC729 5BE9D4E7 32386AE3 6842EFF4 E028C37A
+  F2657F94 6C380BEF C449D2FE D09D75BF 2E9A558F 0729B414 0FBD7F06 01802EB1
+  EB8F8A99 104FF8C1 557F0209 F51937
+        quit
+spanning-tree mode pvst
+spanning-tree extend system-id
+!
+!
+!
+!
+vlan internal allocation policy ascending
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+interface GigabitEthernet0/1
+ switchport access vlan 2
+!
+interface GigabitEthernet0/2
+ switchport access vlan 2
+!
+interface GigabitEthernet0/3
+ switchport access vlan 2
+!
+interface GigabitEthernet0/4
+ switchport access vlan 2
+!
+interface GigabitEthernet0/5
+ switchport access vlan 3
+!
+interface GigabitEthernet0/6
+ switchport access vlan 3
+!
+interface GigabitEthernet0/7
+ switchport access vlan 4
+!
+interface GigabitEthernet0/8
+ switchport access vlan 5
+ switchport mode trunk
+!
+interface GigabitEthernet0/9
+ no keepalive
+!
+interface GigabitEthernet0/10
+ no keepalive
+!
+interface GigabitEthernet0/11
+!
+interface GigabitEthernet0/12
+!
+interface Vlan1
+ no ip address
+ shutdown
+!
+interface Vlan2
+ ip address 172.23.2.2 255.255.255.0
+!
+interface Vlan3
+ ip address 172.23.3.2 255.255.255.0
+!
+interface Vlan4
+ ip address 172.23.4.2 255.255.255.0
+!
+interface Vlan5
+ ip address 172.23.5.2 255.255.255.0
+!
+ip forward-protocol nd
+ip http server
+ip http secure-server
+!
+!
+!
+!
+!
+line con 0
+line vty 0 4
+ login
+line vty 5 15
+ login
+!
+end

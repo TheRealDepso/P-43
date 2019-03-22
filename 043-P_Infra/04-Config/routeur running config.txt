@@ -1,0 +1,167 @@
+
+Current configuration : 2273 bytes
+!
+! Last configuration change at 13:54:54 UTC Fri Mar 22 2019
+version 15.3
+service timestamps debug datetime msec
+service timestamps log datetime msec
+no service password-encryption
+!
+hostname RT1
+!
+boot-start-marker
+boot-end-marker
+!
+aqm-register-fnf
+!
+enable secret 5 $1$uuUc$oCU6FT5CDC/qzFT22Rr031
+enable password root~
+!
+no aaa new-model
+!
+!
+!
+!
+!
+!
+
+
+!
+ip dhcp excluded-address 172.23.2.1
+ip dhcp excluded-address 172.23.3.1
+ip dhcp excluded-address 172.23.4.1
+!
+ip dhcp pool MAIN-POOL
+ network 172.23.2.0 255.255.255.0
+ default-router 172.23.2.1
+!
+ip dhcp pool SECOND-POOL
+ network 172.23.3.0 255.255.255.0
+ default-router 172.23.3.1
+!
+ip dhcp pool THIRD-POOL
+ network 172.23.4.0 255.255.255.0
+ default-router 172.23.4.1
+!
+!
+!
+ip cef
+no ipv6 cef
+!
+!
+!
+!
+!
+multilink bundle-name authenticated
+!
+!
+!
+!
+!
+!
+!
+license udi pid C881-K9 sn FCZ1944707C
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+interface FastEthernet0
+ switchport access vlan 5
+ switchport mode trunk
+ no ip address
+!
+interface FastEthernet1
+ no ip address
+ shutdown
+!
+interface FastEthernet2
+ no ip address
+ shutdown
+!
+interface FastEthernet3
+ no ip address
+ shutdown
+!
+interface FastEthernet4
+ no ip address
+ shutdown
+ duplex auto
+ speed auto
+!
+interface Vlan1
+ no ip address
+ shutdown
+!
+interface Vlan2
+ ip address 172.23.2.1 255.255.255.0
+!
+interface Vlan3
+ ip address 172.23.3.1 255.255.255.0
+!
+interface Vlan4
+ ip address 172.23.4.1 255.255.255.0
+!
+interface Vlan5
+ ip address 172.23.5.1 255.255.255.0
+!
+interface Vlan6
+ ip address 172.23.6.1 255.255.255.0
+!
+router ospf 1
+ network 172.23.2.0 0.0.0.255 area 0
+ network 172.23.3.0 0.0.0.255 area 0
+ network 172.23.4.0 0.0.0.255 area 0
+ network 172.23.5.0 0.0.0.255 area 0
+ network 172.23.6.0 0.0.0.255 area 0
+ default-information originate always
+!
+ip default-gateway 172.23.6.1
+ip forward-protocol nd
+no ip http server
+no ip http secure-server
+!
+!
+ip default-network 172.23.6.1
+!
+!
+snmp-server community public RO
+!
+control-plane
+!
+!
+!
+mgcp behavior rsip-range tgcp-only
+mgcp behavior comedia-role none
+mgcp behavior comedia-check-media-src disable
+mgcp behavior comedia-sdp-force disable
+!
+mgcp profile default
+!
+!
+!
+!
+!
+line con 0
+ no modem enable
+line aux 0
+line vty 0 4
+ password root
+ login
+ transport input all
+!
+scheduler allocate 20000 1000
+!
+end
