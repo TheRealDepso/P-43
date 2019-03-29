@@ -1,7 +1,8 @@
+Building configuration...
 
-Current configuration : 2273 bytes
+Current configuration : 2195 bytes
 !
-! Last configuration change at 13:54:54 UTC Fri Mar 22 2019
+! Last configuration change at 15:27:32 UTC Fri Mar 29 2019
 version 15.3
 service timestamps debug datetime msec
 service timestamps log datetime msec
@@ -42,6 +43,8 @@ ip dhcp pool SECOND-POOL
 ip dhcp pool THIRD-POOL
  network 172.23.4.0 255.255.255.0
  default-router 172.23.4.1
+!
+ip dhcp pool second-pool
 !
 !
 !
@@ -121,20 +124,17 @@ interface Vlan6
  ip address 172.23.6.1 255.255.255.0
 !
 router ospf 1
- network 172.23.2.0 0.0.0.255 area 0
- network 172.23.3.0 0.0.0.255 area 0
- network 172.23.4.0 0.0.0.255 area 0
  network 172.23.5.0 0.0.0.255 area 0
  network 172.23.6.0 0.0.0.255 area 0
  default-information originate always
 !
-ip default-gateway 172.23.6.1
+ip default-gateway 172.23.6.0
 ip forward-protocol nd
 no ip http server
 no ip http secure-server
 !
 !
-ip default-network 172.23.6.1
+ip route 0.0.0.0 0.0.0.0 172.23.6.0
 !
 !
 snmp-server community public RO
@@ -165,3 +165,5 @@ line vty 0 4
 scheduler allocate 20000 1000
 !
 end
+
+RT1#
