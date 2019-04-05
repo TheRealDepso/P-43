@@ -1,15 +1,13 @@
-Building configuration...
-
-Current configuration : 1923 bytes
+Current configuration : 1922 bytes
 !
-! Last configuration change at 02:31:19 UTC Mon Mar 1 1993
+! Last configuration change at 00:40:41 UTC Mon Mar 1 1993
 version 15.3
 no service pad
 service timestamps debug datetime msec
 service timestamps log datetime msec
 service password-encryption
 !
-hostname ap
+hostname AP3
 !
 !
 logging rate-limit console 9
@@ -28,7 +26,7 @@ dot11 ssid AP3
    authentication open
    authentication key-management wpa version 2
    guest-mode
-   wpa-psk ascii 7 121A0C0411040F0D39282B
+   wpa-psk ascii 7 06482A35414244485744
 !
 !
 !
@@ -112,5 +110,3 @@ line vty 0 4
  transport input all
 !
 end
-
-ap#
